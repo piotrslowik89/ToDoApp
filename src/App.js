@@ -1,21 +1,6 @@
 import React, { Component } from "react";
-
-class ToDoItem extends Component {
-  state = { done: false };
-
-  toggleDone = () => {
-    this.setState({ done: !this.state.done });
-  };
-
-  render() {
-    const { text } = this.props;
-    return (
-      <div onClick={this.toggleDone}>
-        <p>{text}</p>
-      </div>
-    );
-  }
-}
+import "./App.css";
+import ToDoItem from "./components/ToDoItem";
 
 class ToDoList extends Component {
   state = {
@@ -37,11 +22,12 @@ class ToDoList extends Component {
   render() {
     const { title } = this.props;
     const { tasks, draft } = this.state;
+
     return (
       <div>
         <h1>{title}</h1>
         {tasks.map((task) => (
-          <ToDoItem task={task} />
+          <ToDoItem text={task.text} done={task.done} />
         ))}
         <input type="text" onChange={this.updateDraft} value={draft} />
         <button onClick={this.addToDo}>Add</button>
@@ -49,10 +35,13 @@ class ToDoList extends Component {
     );
   }
 }
-// rcc emmet ctrl c ctrl v dob(do destukturyzacji)
 
 class App extends Component {
-  myTasks = [{ text: "Record a ReactJS video" }, { text: "Go for a walk" }];
+  myTasks = [
+    { text: "Record a ReactJS video" },
+    { done: false, text: "Go for a walk" },
+  ];
+
   render() {
     return (
       <div>
@@ -61,4 +50,5 @@ class App extends Component {
     );
   }
 }
+
 export default App;
