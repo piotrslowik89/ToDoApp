@@ -26,22 +26,15 @@ const DestroyButton = styled.button`
 `;
 
 class ToDoList extends Component {
-  constructor(props) {
-    super(props);
-    console.log("Hello World Constructor");
-  }
-  componentDidMount() {
-    console.log("component mounted");
-  }
-  componentDidUpdate(prevProps, prevState) {
-    console.log("Component (ToDoList) updated");
-  }
+  // componentDidMount() {
+  //   fetch("http://localhost:3000/todo_items")
+  //     .then((response) => response.json())
+  //     .then((json) => console.log(json));
+
+  // }
 
   static defaultProps = {
-    tasks: [
-      { text: "Record a ReactJS video" },
-      { done: false, text: "Go for a walk" },
-    ],
+    tasks: [],
     title: "My stuff",
   };
 
@@ -75,7 +68,7 @@ class ToDoList extends Component {
 
         <DestroyButton onClick={this.removeAll}>Remove All</DestroyButton>
         {tasks.map((task) => (
-          <ToDoItem text={task.text} done={task.done} />
+          <ToDoItem text={task.content} done={task.done} />
         ))}
         <NewTodoForm
           onSubmit={this.addToDo}
